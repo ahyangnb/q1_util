@@ -25,3 +25,7 @@ class Q1Utils {
     }
   }
 }
+
+extension Q1BoolExtension on bool {
+  bool not() => !this;
+}
