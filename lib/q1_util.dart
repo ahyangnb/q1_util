@@ -1,5 +1,9 @@
 library q1_util;
 
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
 class Q1Utils {
   static String showTowNumber(int number) {
     return number.toString().length > 1 ? number.toString() : '0$number';
@@ -37,5 +41,25 @@ extension FirstWhereExt<T> on List<T> {
       if (test(element)) return element;
     }
     return null;
+  }
+}
+
+mixin AutoCloseStreamSubscription on ChangeNotifier {
+  List<StreamSubscription> subscriptionList = <StreamSubscription>[];
+
+  void addSubscription(StreamSubscription subscription) {
+    subscriptionList.add(subscription);
+  }
+
+  void closeWorkList() {
+    for (var subscription in subscriptionList) {
+      subscription.cancel();
+    }
+  }
+
+  @override
+  void dispose() {
+    closeWorkList();
+    super.dispose();
   }
 }
