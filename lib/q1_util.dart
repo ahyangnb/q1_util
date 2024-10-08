@@ -1,6 +1,7 @@
 library q1_util;
 
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -61,5 +62,11 @@ mixin AutoCloseStreamSubscription on ChangeNotifier {
   void dispose() {
     closeWorkList();
     super.dispose();
+  }
+}
+
+class RandomUtil {
+  static int getInt(int min, int max) {
+    return min + (max - min) * Random().nextInt(100) ~/ 100;
   }
 }
