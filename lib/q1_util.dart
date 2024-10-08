@@ -29,3 +29,13 @@ class Q1Utils {
 extension Q1BoolExtension on bool {
   bool not() => !this;
 }
+
+extension FirstWhereExt<T> on List<T> {
+  /// The first element satisfying [test], or `null` if there are none.
+  T? firstWhereOrNull(bool Function(T element) test) {
+    for (var element in this) {
+      if (test(element)) return element;
+    }
+    return null;
+  }
+}
